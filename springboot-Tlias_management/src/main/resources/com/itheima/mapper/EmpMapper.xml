@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.EmpMapper">
+
+    <select id="list2" resultType="com.itheima.pojo.Emp">
+        select * from emp
+        <where>
+            <if test="name!=null and name!=''">
+                and name like concat ('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+                and gender = #{gender}
+            </if>
+            <if test="begin!=null and end!=''">
+                and entry_date between #{begin} and #{end}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+    <delete id="deleteByIds">
+        delete from emp where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!-- 新增(不能指定插入密码,会把password=null的默认值传进数据库 导致数据库默认的123456失效)-->
+    <insert id="insert">
+        insert into emp (username, name, gender, image, job, entrydate, dept_id, create_time, update_time)
+        values (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId,}, #{createTime},
+                #{updateTime})
+    </insert>
+
+    <!-- 更新时 createTime , password 不更新-->
+    <update id="update">
+        update emp
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="job != null">
+                job = #{job},
+            </if>
+            <if test="entrydate != null">
+                entrydate = #{entrydate},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

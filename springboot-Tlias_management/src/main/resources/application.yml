@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #驱动类名称
+    url: jdbc:mysql://localhost:3306/tlias_management #数据库连接的url
+    username: root #连接数据库的用户名
+    password: 666666 #连接数据库的密码
+  servlet:
+    multipart:
+      max-file-size: 10MB #配置单个文件最大上传大小
+      max-request-size: 100MB #配置单个请求最大上传大小(一次请求可以上传多个文件)
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置mybatis的日志, 指定输出到控制台
+    map-underscore-to-camel-case: true #开启mybatis的驼峰命名自动映射开关 a_column ------> aClo umn
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI5tJB1TF79gVgUw82Ewig
+    accessKeySecret: Hh7QH9s8tuR1IUJfgdJoGeVHHBGEGN
+    bucketName: web-wtq
+#spring事务管理日志
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+# yml 文件基本语法
+# 大小写敏感
+# 数值前必须有空格作为分隔符
+# 使用缩进表示层级关系,缩进时,不允许使用Tab,只能用空格(Idea中会自动将Tab转换为空格)
+# 缩进的空格数目不重要,只要相同层级的元素左侧对齐即可
+# 表示注释,从这个字符一直到 行尾,都会被解析器忽略
+
+#server:
+#  port: 9000
+#
+#user:
+#  name: "zhang san"
+#  age: 23
+#  password: '0123456' 数字0开头 会被当成8进制数处理,需要加引号
+#
+#hobby:
+#  - java
+#  - game
+#  - c++

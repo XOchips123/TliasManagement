@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<!--
+    上传三要素:
+    type="file"  才能选中本地文件上传
+    method = "post" get有大小限制且浏览器地址栏url地址只能写字符串
+    enctype="multipart/form-data"
+-->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        姓名: <input type="text" name="username"><br>
+        年龄: <input type="text" name="age"><br>
+        头像: <input type="file" name="image"><br>
+        <input type="submit" value="提交">
+    </form>
+
+</body>
+</html>
